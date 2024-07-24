@@ -1,5 +1,11 @@
 import React from "react";
-import { FormControl, FormField, FormLabel, FormMessage } from "./ui/form";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "./ui/form";
 import { Input } from "./ui/input";
 import { Control, FieldPath } from "react-hook-form";
 import { z } from "zod";
@@ -20,7 +26,7 @@ const CustomInput = ({ control, name, label, placeholder }: CustomInput) => {
       control={control}
       name={name}
       render={({ field }) => (
-        <div className="form-item">
+        <FormItem className="space-y-0 form-item">
           <FormLabel className="form-label">{label}</FormLabel>
           <div className="flex w-full flex-col">
             <FormControl>
@@ -33,7 +39,7 @@ const CustomInput = ({ control, name, label, placeholder }: CustomInput) => {
             </FormControl>
             <FormMessage className="form-message mt-2" />
           </div>
-        </div>
+        </FormItem>
       )}
     />
   );

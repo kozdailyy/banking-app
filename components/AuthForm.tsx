@@ -12,7 +12,7 @@ import CustomInput from "./CustomInput";
 import { authFormSchema } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { signIn, signUp } from "@/lib/actions/user.actions";
+import { getLoggedInUser, signIn, signUp } from "@/lib/actions/user.actions";
 
 const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
@@ -41,11 +41,11 @@ const AuthForm = ({ type }: { type: string }) => {
       }
 
       if (type === "sign-in") {
-        const response = await signIn({
-          email: data.email,
-          password: data.password,
-        });
-        if (response) router.push("/");
+        // const response = await signIn({
+        //   email: data.email,
+        //   password: data.password,
+        // });
+        // if (response) router.push("/");
       }
     } catch (error) {
       console.log(error);
@@ -68,6 +68,7 @@ const AuthForm = ({ type }: { type: string }) => {
             Horizon
           </h1>
         </Link>
+
         <div className="flex flex-col gap-1 md:gap-3">
           <h1 className="text-24 lg:text-36 font-semibold text-gray-900">
             {user ? "Link Account" : type === "sign-in" ? "Sign In" : "Sign Up"}
@@ -79,6 +80,7 @@ const AuthForm = ({ type }: { type: string }) => {
           </p>
         </div>
       </header>
+
       {user ? (
         <div className="flex flex-col gap-4">{/* PlaidLink */}</div>
       ) : (
@@ -163,6 +165,7 @@ const AuthForm = ({ type }: { type: string }) => {
                 label="Password"
                 placeholder="Enter your password"
               />
+
               <div className="flex flex-col gap-4">
                 <Button type="submit" className="form-btn" disabled={isLoading}>
                   {isLoading ? (
