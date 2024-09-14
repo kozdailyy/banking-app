@@ -2,11 +2,19 @@ import { formatAmount } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import Copy from "./Copy";
 
-const BankCard = ({ account, userName, showBalance }: CreditCardProps) => {
+const BankCard = ({
+  account,
+  userName,
+  showBalance = true,
+}: CreditCardProps) => {
   return (
     <div className="flex flex-col">
-      <Link href="/" className="bank-card">
+      <Link
+        href={`/transaction-history/?id=${account.appwriteItemId}`}
+        className="bank-card min-w-[300px]"
+      >
         <div className="bank-card_content">
           <div>
             <h1 className="text-16 font-semibold text-white">{userName}</h1>
@@ -44,6 +52,8 @@ const BankCard = ({ account, userName, showBalance }: CreditCardProps) => {
           />
         </div>
       </Link>
+
+      {showBalance && <Copy title={account?.sharaebleId} />}
     </div>
   );
 };
